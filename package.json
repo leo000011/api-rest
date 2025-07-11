@@ -4,19 +4,27 @@
   "main": "index.js",
   "dependencies": {
     "express": "^5.1.0",
+    "knex": "^3.1.0",
+    "sqlite3": "^5.1.7",
     "type-is": "^2.0.1",
-    "typescript": "^5.8.3",
     "zod": "^3.25.67"
   },
   "scripts": {
-    "dev": "tsx watch src/server.ts"
+    "dev": "tsx watch src/server.ts",
+    "knex": "node ./node_modules/knex/bin/cli.js --knexfile knexfile.ts",
+    "knex1": "node --import tsx ./node_modules/.bin/knex",
+    "migrate1": "ts-node ./node_modules/knex/bin/cli.js migrate:latest"
+    
   },
   "keywords": [],
   "author": "Leo",
   "license": "ISC",
   "description": "Criando API REST com Node.js",
   "devDependencies": {
+    "ts-node": "^10.9.2",
     "@types/express": "^5.0.3",
+    "typescript": "^5.8.3",
+    "@types/node": "^24.0.12",
     "tsx": "^4.20.3"
   }
 }

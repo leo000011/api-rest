@@ -5,7 +5,7 @@ import { ProductsController } from '../Controllers/ProductsController'
 
 const productsController = new ProductsController()
 
-const route = Router()
+const productsRoute = Router()
 
 // const nome = "RUPTURA"
 
@@ -24,9 +24,9 @@ const route = Router()
 //     res.send(`Products ${id} e o nome ${user1}`)
 // })
 
-route.get("/", productsController.index)
+productsRoute.get("/", productsController.index)
 
-route.post("/", myMiddleware1, productsController.create )
+productsRoute.post("/", myMiddleware1, productsController.create )
 
 
-export {route}
+export {productsRoute}
