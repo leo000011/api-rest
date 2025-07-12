@@ -11,6 +11,7 @@
   },
   "scripts": {
     "dev": "tsx watch src/server.ts",
+    "start": "npm start",
     "knex": "node ./node_modules/knex/bin/cli.js --knexfile knexfile.ts",
     "knex1": "node --import tsx ./node_modules/.bin/knex",
     "migrate1": "ts-node ./node_modules/knex/bin/cli.js migrate:latest"
