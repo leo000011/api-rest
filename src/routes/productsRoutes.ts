@@ -28,5 +28,7 @@ productsRoute.get("/", productsController.index)
 
 productsRoute.post("/", myMiddleware1, productsController.create )
 
+productsRoute.put("/:id", productsController.put)
+
 
 export {productsRoute}
