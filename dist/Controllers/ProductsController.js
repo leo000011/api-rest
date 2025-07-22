@@ -1,14 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ProductsController = void 0;
-const knex_1 = require("../database/knex");
+const client_1 = require("@prisma/client");
+const prisma = new client_1.PrismaClient();
 class ProductsController {
     async index(req, res) {
         // const {page, limit} = req.query
         // res.status(200).json({page, limit})
         // res.send(`Página ${page} de ${limit} ID: ${id}`)
-        const courses = await (0, knex_1.knex)("courses").select();
-        res.status(200).json(courses);
+        const get1 = await prisma.lead.findMany();
+        res.status(200).json({ get1 });
     }
     async create(req, res) {
         // const bodySchema = z.object({
@@ -23,14 +24,16 @@ class ProductsController {
         // throw new Error("Erro no Servidor e em tudo pata")
         // res.send()
         const { name } = req.body;
-        await (0, knex_1.knex)("courses").insert({ name });
         res.status(201).json({ name });
     }
     async put(req, res) {
         const { id } = req.params;
         const { name } = req.body;
-        await (0, knex_1.knex)("courses").update({ name }).where({ id });
         res.json({ sucess: "atualizado com sucesso!" });
+    }
+    async delete(req, res) {
+        const { id } = req.params;
+        res.json();
     }
 }
 exports.ProductsController = ProductsController;

@@ -1,8 +1,9 @@
 import {Request, Response} from 'express'
 import { AppError } from '../utils/AppError'
 import {z} from "zod"
-import {knex} from '../database/knex'
+import {PrismaClient} from "@prisma/client"
 
+const prisma = new PrismaClient()
 class ProductsController {
 
     async index(req: Request, res: Response) {
@@ -11,9 +12,9 @@ class ProductsController {
     // res.status(200).json({page, limit})
     // res.send(`Página ${page} de ${limit} ID: ${id}`)
 
-        const courses = await knex("courses").select()
+        const get1 = await prisma.lead.findMany();
 
-        res.status(200).json(courses)
+        res.status(200).json({get1})
     }
     
     async create(req: Request, res: Response) {
@@ -38,7 +39,7 @@ class ProductsController {
     
         const {name} = req.body;
         
-        await knex("courses").insert({name})
+    
 
     res.status(201).json({name})
     }
@@ -47,9 +48,17 @@ class ProductsController {
         const {id} = req.params    
         const {name} = req.body;
 
-        await knex("courses").update({name}).where({id})
+        
 
         res.json({sucess: "atualizado com sucesso!"})
+    }
+
+    async delete(req: Request, res: Response) {
+        const {id} = req.params;
+
+        
+
+        res.json()
     }
 }
 
